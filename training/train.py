@@ -1,61 +1,48 @@
 import csv 
 import cv2
 import numpy as np
-
-lines = []
-with open('./driving_log.csv') as csvfile:
-	reader = csv.reader(csvfile)
-	for line in reader:
-		lines.append(line)
-
-images = []
-measurements = []
-# Update path in log file to match the path on this system
-lines = lines[1:] # If first line is headings
-for line in lines:
-	source_path = line[0]
-	filename = source_path.split('/')[-1]
-	current_path = './IMG/' + filename
-	image = cv2.imread(current_path)
-	images.append(image)
-	measurement = float(line[3])
-	measurements.append(measurement)
-
-X_train = np.array(images)
-y_train = np.array(measurements)
-
+import sys
 import keras
 import keras.models as models
 
-from keras.models import Sequential, Model
-from keras.layers.core import Dense, Dropout, Activation, Flatten, Reshape
-from keras.layers import BatchNormalization,Input, Lambda
-from keras.layers.recurrent import SimpleRNN, LSTM
-from keras.layers.convolutional import Convolution2D, Cropping2D
-from keras.optimizers import SGD, Adam, RMSprop
-import sklearn.metrics as metrics
+from keras.models import load_model
 
-nrows = 160
-ncols = 320
 
-model = Sequential()
+# load the model
+if len(sys.argv) != 5:
+    print('Usage python train.py <path/to/driving/log/csv> <path/to/images/folder> <<path/to/existing/model> <path/to/new/model>')
+else:
+    
+    driving_log_path, img_folder_path, model_file_path, new_model_path = sys.argv[1:]
+    
+    # Load Driving data
+    lines = []
+    with open(driving_log_path) as csvfile:
+    	reader = csv.reader(csvfile)
+    	for line in reader:
+    		lines.append(line)
 
-model.add(Lambda(lambda x: x/255.0 - 0.5, input_shape=(nrows, ncols, 3)))
-model.add(Cropping2D(cropping=((70, 25), (0, 0))))
-model.add(Convolution2D(24,5,5,border_mode='valid', activation='relu', subsample=(2,2)))
-model.add(Convolution2D(36,5,5,border_mode='valid', activation='relu', subsample=(2,2)))
-model.add(Convolution2D(48,5,5,border_mode='valid', activation='relu', subsample=(2,2)))
-model.add(Convolution2D(64,3,3,border_mode='valid', activation='relu', subsample=(1,1)))
-model.add(Convolution2D(64,3,3,border_mode='valid', activation='relu', subsample=(1,1)))
-model.add(Flatten())
-model.add(Dense(100, activation='relu'))
-model.add(Dense(50, activation='relu'))
-model.add(Dense(10, activation='relu'))
-model.add(Dense(1, activation='tanh'))
+    images = []
+    measurements = []
+    
+    # Update path in log file to match the path on this system
+    lines = lines[1:] # If first line is headings
+    for line in lines:
+    	source_path = line[0] # Center image 
+    	filename = source_path.split('/')[-1]
+    	current_path = img_folder_path + filename
+    	image = cv2.imread(current_path)
+    	images.append(image)
+    	measurement = float(line[3]) 
+    	measurements.append(measurement)
 
-model.summary()
+    X_train = np.array(images)
+    y_train = np.array(measurements)
+    
+    # Load the model 
+    model = load_model(model_file_path)
+    
+    model.compile(loss='mse', optimizer='adam')
+    model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=2)
 
-model.compile(loss='mse', optimizer='adam')
-model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=2)
-
-model.save('model.h5')
+    model.save(new_model_path)
