@@ -31,7 +31,7 @@ from keras.models import Sequential, Model
 from keras.layers.core import Dense, Dropout, Activation, Flatten, Reshape
 from keras.layers import BatchNormalization,Input, Lambda
 from keras.layers.recurrent import SimpleRNN, LSTM
-from keras.layers.convolutional import Convolution2D, Cropping25
+from keras.layers.convolutional import Convolution2D, Cropping2D
 from keras.optimizers import SGD, Adam, RMSprop
 import sklearn.metrics as metrics
 
