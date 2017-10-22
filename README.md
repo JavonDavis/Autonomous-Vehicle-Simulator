@@ -4,7 +4,6 @@
 
 Overview
 ---
-This repository contains starting files for the Behavioral Cloning Project.
 
 In this project, I used deep neural networks and convolutional neural networks to clone driving behavior. I trained, validated and tested a model using Keras. The model outputs a steering angle to an autonomous vehicle.
 
@@ -18,13 +17,16 @@ https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4419_windows-sim/
 The final model used to produce the video is models/model_03_04.h5
 
 ## Model Architecture
+A basic model was built using model.py.
 ![Model Summary](/readme_images/model_summary.png?raw=true "Model Summary") (Lines 18 - 34)
+
+The model was then improved using Transfer learning withthe train.py file.
 
 The architecture I chose is based on NVIDIA's autopilot architecture but the Normalization layer was replaced with a Lambda layer that applies a simple function to each pixel in an image(pixel/255 - 0.5) and to combat Overfitting a Dropout layer was introduced after each Convolutional layer.
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The number of epochs I went with was 2 even though I could possibly train ffor more since the validation loss was decreasing but Hardware limitations again made this difficult for me to play with and I also used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The number of epochs I went with was 2 even though I could possibly train for more since the validation loss was decreasing but Hardware limitations again made this difficult for me to play with and I also used an adam optimizer so that manually training the learning rate wasn't necessary.
 
 ## Model training
 The final model used was trained with data from the 3 camera angles, and also flipped horizontally. This data was recorded from 3 laps - 2 clockwise laps and 1 counter clockwise lap on track1. I think more Data augmentation techniques could be employed to allow the model to perform better on both tracks but Hardware limitations made that difficult to accomplish for this submission.I realized that on both tracks the model(using models/model_06 for track2 which was trained with data from track2) didn't perform well on areas of the track that were darker(due to a shadow). I believe this could be definately be combatted with data augmentation techniques.
