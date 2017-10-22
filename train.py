@@ -2,8 +2,6 @@ import csv
 import cv2
 import numpy as np
 import sys
-import keras
-import keras.models as models
 from augment_data import augment
 
 from keras.models import load_model
@@ -50,7 +48,7 @@ else:
             measurements.append(-measurement)
 
     X_train, y_train = np.array(images), np.array(measurements)
-    X_train, y_train = augment(X_train, y_train, 10000)
+    # X_train, y_train = augment(X_train, y_train, 10000) # Time consuming
     X_train, y_train = shuffle(X_train, y_train)
 
     # Load the model
