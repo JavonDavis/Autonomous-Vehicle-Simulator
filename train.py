@@ -66,8 +66,8 @@ else:
     correction_factor = 0.2
 
     # compile and train the model using the generator function
-    train_generator = generator(train_samples, batch_size=32)
-    validation_generator = generator(validation_samples, batch_size=32)
+    train_generator = generator(train_samples)
+    validation_generator = generator(validation_samples)
 
     # Load the model
     model = load_model(model_file_path)
