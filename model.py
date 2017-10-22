@@ -1,14 +1,7 @@
-import keras
-import keras.models as models
-
-from keras.models import Sequential, Model
-from keras.layers.core import Dense, Dropout, Activation, Flatten, Reshape
-from keras.layers import BatchNormalization,Input, Lambda
-from keras.layers.recurrent import SimpleRNN, LSTM
+from keras.layers import Lambda
 from keras.layers.convolutional import Convolution2D, Cropping2D
-from keras.optimizers import SGD, Adam, RMSprop
-import sklearn.metrics as metrics
-import matplotlib.pyplot as plt
+from keras.layers.core import Dense, Dropout, Flatten
+from keras.models import Sequential
 
 nrows = 160
 ncols = 320
