@@ -5,16 +5,17 @@
 Overview
 ---
 
-In this project, I used deep neural networks and convolutional neural networks to clone driving behavior. I trained, validated and tested a model using Keras. The model outputs a steering angle to an autonomous vehicle.
+In this project, I used a convolutional neural network to clone driving behavior. I trained, validated and tested a model using Keras. The model outputs a steering angle to an autonomous vehicle.
 
-A simulator is provided where you can steer a car around a track for data collection. I used image data and steering angles to train the neural network, the model was continually improved using the transfer learning technique and then used the model to drive the car autonomously around the track.
+A simulator is provided where you can steer a car around a track for data collection. I used image data and steering angles to train the neural network, the model was continually improved using the transfer learning technique and then used to drive the car autonomously around the track.
 
-https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae46bb_linux-sim/linux-sim.zip
-https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4594_mac-sim.app/mac-sim.app.zip
-https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4419_windows-sim/windows-sim.zip
+See below for links to download the Simulator:
+Linux: https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae46bb_linux-sim/linux-sim.zip
+OSX: https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4594_mac-sim.app/mac-sim.app.zip
+Windows: https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4419_windows-sim/windows-sim.zip
 
 # Final Model
-The final model used to produce the video is models/model_03_04.h5
+Many iterations of the model can be found in the model folder 
 
 ## Model Architecture
 A basic model was built using model.py.
