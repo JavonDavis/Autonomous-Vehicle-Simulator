@@ -48,13 +48,13 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 Thanks to the simulator training data was easy to gather via training mode. The data comprised of 3 camera angles, from the front of the car(from the center, left and right). See below for a sample,
 
 Left
-![Left Sample](/readme_images/left_sample.png?raw=true "Left Sample")
+![Left Sample](/readme_images/left_sample.jpg?raw=true "Left Sample")
 
 Center
-![Center Sample](/readme_images/center_sample.png?raw=true "Center Sample")
+![Center Sample](/readme_images/center_sample.jpg?raw=true "Center Sample")
 
 Right
-![Right Sample](/readme_images/right_sample.png?raw=true "Right Sample")
+![Right Sample](/readme_images/right_sample.jpg?raw=true "Right Sample")
 
 The final model was trained with 2 laps both clockwise and counter clockwise going around the first track.
 
