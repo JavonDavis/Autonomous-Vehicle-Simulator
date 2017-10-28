@@ -10,8 +10,11 @@ In this project, I used a convolutional neural network to clone driving behavior
 A simulator is provided where you can steer a car around a track for data collection. I used image data and steering angles to train the neural network, the model was continually improved using the transfer learning technique and then used to drive the car autonomously around the track.
 
 See below for links to download the Simulator:
+
 Linux: https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae46bb_linux-sim/linux-sim.zip
+
 OSX: https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4594_mac-sim.app/mac-sim.app.zip
+
 Windows: https://d17h27t6h515a5.cloudfront.net/topher/2017/February/58ae4419_windows-sim/windows-sim.zip
 
 # Final Model
